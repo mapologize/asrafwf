@@ -1,0 +1,21 @@
+<div class="btn btn-primary" id="connectWalletBTN">
+    Connect
+</div>
+<script>
+    
+    connectWalletBTN.addEventListener('click', connectWallet);
+
+    async function connectWallet() {
+        if (window.ethereum) {
+            connectWalletBTN.innerHTML = "Loading...";
+            let conn = window.ethereum.request({method: 'eth_requestAccounts'});
+            conn.then((result) => {
+                connectWalletBTN.innerHTML = result;
+            }).catch((err) => {
+                connectWalletBTN.innerHTML = err.message;
+            });
+        }else{
+            connectWalletBTN.innerHTML = "Not Found MetaMask!";
+        }
+    }
+</script>
